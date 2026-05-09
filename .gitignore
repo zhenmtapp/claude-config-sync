@@ -1,0 +1,75 @@
+# =====================================================
+# 認証・トークン系（絶対に同期しない）
+# =====================================================
+.credentials.json
+*-credentials*
+*.token
+*.key
+*.pem
+auth/
+.env
+.env.*
+
+# =====================================================
+# Claude Code (CLI) 側のローカル状態・履歴
+# =====================================================
+code/sessions/
+code/projects/
+code/todos/
+code/shell-snapshots/
+code/local-agent-mode-sessions/
+code/statsig/
+code/cache/
+code/.cache/
+code/logs/
+code/.credentials.json
+
+# プラグイン管理 symlink (マシン依存パスを指すため除外)
+# 各PCでプラグインをインストールすれば自動で再生成される
+# 必要に応じて個別に追加してください
+
+# 過去の skill backup
+code/skills/.backup-*
+
+# =====================================================
+# Claude Desktop / Cowork 側のローカル状態
+# (OAuthトークン・セッションが入っているもの)
+# =====================================================
+desktop/Cache/
+desktop/Code\ Cache/
+desktop/GPUCache/
+desktop/DawnGraphiteCache/
+desktop/DawnWebGPUCache/
+desktop/IndexedDB/
+desktop/Local\ Storage/
+desktop/Session\ Storage/
+desktop/Logs/
+desktop/local-agent-mode-sessions/
+desktop/rpm/
+desktop/blob_storage/
+desktop/Service\ Worker/
+desktop/Cookies*
+desktop/Network/
+desktop/Preferences
+desktop/TransportSecurity
+desktop/Trust\ Tokens*
+desktop/SharedStorage*
+desktop/QuotaManager*
+desktop/Shared\ Dictionary/
+desktop/extensions_crx_cache/
+
+# =====================================================
+# auto-sync ログ（マシンごとに別物）
+# =====================================================
+.auto-sync.log
+
+# =====================================================
+# 一般
+# =====================================================
+.DS_Store
+*.log
+*.tmp
+tmp/
+node_modules/
+.vscode/
+.idea/

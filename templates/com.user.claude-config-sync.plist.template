@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.user.claude-config-sync.plist
+  launchd ジョブ定義: 30分ごとに claude-config を自動同期する。
+
+  インストール:
+    cp templates/com.user.claude-config-sync.plist.template \
+       ~/Library/LaunchAgents/com.user.claude-config-sync.plist
+    launchctl load ~/Library/LaunchAgents/com.user.claude-config-sync.plist
+
+  カスタマイズ:
+    - 同期間隔を変更: <integer>1800</integer> を変更 (秒単位)
+    - リポジトリパス変更: ProgramArguments の "$HOME/git/claude-config/..." を編集
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.claude-config-sync</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-l</string>
+        <string>-c</string>
+        <string>"$HOME/git/claude-config/scripts/auto-sync.sh"</string>
+    </array>
+
+    <key>StartInterval</key>
+    <integer>1800</integer>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/claude-config-sync.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/claude-config-sync.err</string>
+</dict>
+</plist>

@@ -1,0 +1,6 @@
+# このディレクトリには init-from-existing.sh 実行後、~/.claude/ の同期対象がコピーされます
+# - skills/
+# - memory/
+# - hooks/
+# - CLAUDE.md
+# - settings.json

@@ -2,6 +2,8 @@
 
 > 複数のMac間で **Claude Code** と **Claude Desktop / Cowork** の設定・スキル・memoryを Git経由で双方向同期するためのテンプレート
 
+> **⚠️ v1.0 利用者へのお知らせ (2026-05)**: v1.0 では Claude Code の **project-level auto-memory** (`~/.claude/projects/-Users-<USER>/memory/`) が同期対象から漏れていました。`memory-save` で明示保存したものは同期されますが、Claude Code が自動で書く auto-memory は同期されません。**修復するには `./scripts/setup-memory.sh` を実行してください。** 詳細は [Release v1.1](https://github.com/zhenmtapp/claude-config-sync/releases) と [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) を参照。
+
 ## なぜこれが必要か
 
 複数のMacで Claude を使っていると、

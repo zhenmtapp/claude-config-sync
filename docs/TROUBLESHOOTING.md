@@ -4,6 +4,42 @@
 
 ---
 
+## ⚠️ project-level auto-memory が同期されない
+
+**v1.0 の重大バグ**、v1.1 で修正済み。既存セットアップでは手動対応が必要です。
+
+### 症状
+
+`memory-save` で保存した memory は同期されるのに、Claude Code が自動で覚えた内容が他Macに反映されない。「以前これ話したよね?」と聞いても通じない症状。
+
+### 原因
+
+Claude Code には2種類の memory 書き込み先があります。User-level memory（`~/.claude/memory/`）はこのテンプレートで同期されますが、Project-level auto-memory（`~/.claude/projects/-Users-<USER>/memory/`）が v1.0 では同期対象から漏れていました。
+
+### 確認
+
+```bash
+ls ~/.claude/projects/-Users-$(whoami)/memory/ 2>/dev/null | head -20
+```
+
+ファイルが出てきたら、それらは未同期の可能性があります。
+
+### 対処（推奨）
+
+```bash
+cd ~/git/claude-config
+chmod +x scripts/setup-memory.sh
+./scripts/setup-memory.sh
+```
+
+対話式で「複数Macで同じプロジェクトを開発するか?」を聞かれます。A を選ぶと既存ファイルを安全にバックアップ→claude-config に取り込み→symlink。両Macで同じスクリプトを実行してください。
+
+### 注意：homedir名が違うMac間での挿動
+
+Mac1 のユーザー名が `alice`、Mac2 が `bob` の場合、それぞれ `-Users-alice/memory/` と `-Users-bob/memory/` が **同じ** `claude-config/code/memory/` を指すことになります。両Macの auto-memory は1つのプールにマージされる動きです。
+
+---
+
 ## ❌ `git clone` で SSH key 認証エラー
 
 ```
